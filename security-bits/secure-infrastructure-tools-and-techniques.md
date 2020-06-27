@@ -8,7 +8,8 @@ description: >-
 
 Using tools to automate security checks in the path to production itself is a effective way to deliver quality features and product.
 
-This is an attempt to share the tools and techniques to secure the infrastructure setup of your product found effective by me in my day to day work.
+This is an attempt to share the tools and techniques to secure the infrastructure setup of your product found effective by me in my day to day work.  
+If you know more tools or better capabilities of the tools please do share by creating a pull request on the repo.
 
 ## AWS Security Hub
 
@@ -84,6 +85,4 @@ I have seen it in action to scan vulnerabilities in containers and functions. Ap
   4. To check for Multiple SSL Certificate related vulnerabilities **`nmap -sC -Pn <IP>`**
   5. To check for Multiple SSH vulnerabilities **`nmap --script ssh2-enum-algos <IP>`** 
   6. To check for weak Diffie-Hellman key exchange algorithm vulnerabilities **`nmap --script ssl-dh-params <IP>`** 
-
-  If you know more tools or better capabilities of the tools mentioned in this blog please share your experience. If you know of better controls one could apply or resources to be reviewed, please do share that too.
 
