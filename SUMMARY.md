@@ -18,4 +18,5 @@
 
 * [Who Do You Think Owns Your Android Application?](security-bits/who-do-you-think-owns-your-android-application.md)
 * [Secure Infrastructure Tools & Techniques](security-bits/secure-infrastructure-tools-and-techniques.md)
+* [DNS rebinding attacks - Useful resources](security-bits/dns-rebinding-attacks-useful-resources.md)
 
