@@ -9,7 +9,7 @@ description: >-
 Using tools to automate security checks in the path to production itself is a effective way to deliver quality features and product.
 
 This is an attempt to share the tools and techniques to secure the infrastructure setup of your product found effective by me in my day to day work.  
-If you know more tools or better capabilities of the tools please do share by creating a pull request on the repo.
+If you know more tools or better capabilities of the tools please do share by creating a pull request on the repository.
 
 ## AWS Security Hub
 
@@ -67,7 +67,7 @@ I have seen it in action to scan vulnerabilities in containers and functions. Ap
 
 * Checking for the rules/policies/ACL policies for the wildcard character \* under action and resource helps determine the risk associated with any wide permissions
 * To configure many AWS services, one passes an IAM role to the service - iam:PassRole. It is useful to review if the pass role policy uses asterisks \(\*\) because that could enable one to perform privilege escalation.
-* I have recently learnt about nmap scripts and use them to check for the below vulnerabilities
+* `nmap` scripts that can be used to check for the below vulnerabilities
 
   1. Check for Sweet32 vulnerability using
 
@@ -84,5 +84,18 @@ I have seen it in action to scan vulnerabilities in containers and functions. Ap
 
   4. To check for Multiple SSL Certificate related vulnerabilities **`nmap -sC -Pn <IP>`**
   5. To check for Multiple SSH vulnerabilities **`nmap --script ssh2-enum-algos <IP>`** 
-  6. To check for weak Diffie-Hellman key exchange algorithm vulnerabilities **`nmap --script ssl-dh-params <IP>`** 
+  6. To check for weak Diffie-Hellman key exchange algorithm vulnerabilities **`nmap --script ssl-dh-params <IP>`**
+
+* Deployment/Configuration Management Tool  \(Ansible/Chef\):
+  * We should review how the credentials \(AWS access keys, database credentials etc\) are stored \(can look for knife data bags/pem files\)
+* CI/CD setup:
+  1. We should review how the credentials \(AWS access keys, Github credentials etc\) are stored
+  2. We should make sure the service is not open to the internet. Ideally one should limit the number of services, and the number of services listening on non-local interfaces. If it needs to be open to the internet, review the authentication mechanism. Many are insecure by default.
+  3. Think about setting up a firewall that whitelists only specific ports from expected hosts or addresses.
+  4. We should also review the output of the build runs such that SSH keys, database credentials, Git credentials, etc, are not logged.
+* Database:
+  * We should review that no ports should be open to the public
+  * Normally authentication is not applied by default or the authentication is just admin:admin so the authentication should be reviewed.
+* Message brokers \(RabbitMq, Kafka\), Search technologies \(Apache Solr, Kibana\), Distributed resource management \(Kubernetes, Mesos or Marathon\) tools:
+  * We should make sure the service is not open to the internet. Ideally we should limit the number of services, and the number of services listening on non-local interfaces.
 
