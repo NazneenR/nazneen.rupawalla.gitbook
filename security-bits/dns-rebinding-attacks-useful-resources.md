@@ -10,7 +10,7 @@ In this note, I just plan to share the resources I found very useful to understa
 Blog on Medium showcasing how to attack Private Networks from the Internet with DNS Rebinding : [https://medium.com/@brannondorsey/attacking-private-networks-from-the-internet-with-dns-rebinding-ea7098a2d325](https://medium.com/@brannondorsey/attacking-private-networks-from-the-internet-with-dns-rebinding-ea7098a2d325)
 
 {% hint style="danger" %}
-We do not apply authorization on our local REST API thinking our router has it. Protocols like UPnP are built around this idea that devices on the same network can trust each other. This is the problem.
+My takeaway: We do not apply authorization on our local REST API thinking our router has it. Protocols like UPnP are built around this idea that devices on the same network can trust each other. This is the problem.
 {% endhint %}
 
 Blog on Wired.com detailing how millions of streaming devices are vulnerable to a retro web attack : [https://www.wired.com/story/chromecast-roku-sonos-dns-rebinding-vulnerability/](https://www.wired.com/story/chromecast-roku-sonos-dns-rebinding-vulnerability/)
