@@ -9,5 +9,5 @@ I am in love with the L&D space, interested in change management, love mysteries
 I have recently started blogging about my travel which can be read [here](https://myquestaroundtheworld.travel.blog/).
 
 I can be reached at [Twitter](https://twitter.com/nzneen) or [Linkedin](https://www.linkedin.com/in/nazneen-rupawalla-4b8a8a3b) if you want to share more ideas, have suggestions around my notes and blogs.  
-You can also share your suggestions and comments by creating a pull request on the repository.
+You can also share your suggestions by creating a pull request on the repository.
 
