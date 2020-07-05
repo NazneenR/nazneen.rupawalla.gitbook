@@ -6,7 +6,7 @@ description: >-
 
 # Secure Infrastructure Tools & Techniques
 
-Using tools to automate security checks in the path to production itself is a effective way to deliver quality features and product.
+Using tools to automate security checks in the path to production itself is a effective way to deliver quality features and product. I learnt a few during the recent pen testing workshop I attended.
 
 This is an attempt to share the tools and techniques to secure the infrastructure setup of your product found effective by me in my day to day work.  
 If you know more tools or better capabilities of the tools please do share by creating a pull request on the repository.
