@@ -4,7 +4,7 @@ description: >-
   have been shared in this post.
 ---
 
-# Secure Infrastructure Tools & Techniques
+# Secure Infrastructure: Tools & Techniques
 
 Using tools to automate security checks in the path to production itself is a effective way to deliver quality features and product. I learnt a few during the recent pen testing workshop I attended.
 
@@ -80,9 +80,9 @@ Once this tool has the compromised credentails, it can exploit S3 buckets, Lambd
 
 ## Manual Review
 
-* Checking for the rules/policies/ACL policies for **the** _**wildcard character asterrisk  \(\*\)**_  under action and resource helps determine the risk associated with any wide permissions
+* Checking for the rules/policies/ACL policies for **the** _**wildcard character asterisk \(\*\)**_  under action and resource helps determine the risk associated with any wide permissions
   * To configure many AWS services, one passes an _**IAM role to the service - iam:PassRole**_ and therefore the policy should be reviewed to avoid using asterisk \(\*\) as that could enable one to perform privilege escalation
-* **Usage on n+1 accounts  in AWS is recommended**
+* **Usage of n+1 accounts  in AWS is recommended**
   * One should lock down the 1st account which holds the user and groups and nothing except IAM to manage their account should be enabled
   * The 2nd account that has all the necessary roles and policies to access everything else should be created
   * Members should log into 1st account and then  assume role in 2nd account
