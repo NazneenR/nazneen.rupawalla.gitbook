@@ -3,7 +3,7 @@
 My name is Nazneen Rupawalla and I am a Security Analyst at Thoughtworks living in Pune, India.   
 I am also an Android App Development Enthusiast, Privacy Conscious and Security Enthusiast.
 
-I believe in being a life long learner and learn best when I write it down as it helps with thinking critically and questions my understanding. Sharing it with others strengthens my understanding. I will use this space is to share my lessons while I solve the requirements at hand as part of my role.
+I believe in being a life long learner and learn best when I write it down as it helps with thinking critically and questions my understanding. Sharing it with others strengthens my understanding. I will use this space to share my lessons while I solve the requirements at hand as part of my role.
 
 I have blogged about writing secure Android apps and a couple of technical tips that may be handy.  
 I am in love with the L&D space, interested in change management, love mysteries, lifelong learner. I enjoy swimming, dancing and traveling.
