@@ -47,8 +47,10 @@ One can fail the build if the danger level findings are reported.
 
 ## Aquasec
 
-* Aqua scans VMs, container images and serverless functions for known vulnerabilities, embedded secrets, configuration and permission issues, malware and open-source licensing
+* Aqua scans VMs, container images and serverless functions for known vulnerabilities, embedded secrets & malware
 * You can integrate this scanning with your CI/CD solution to provide feedback periodically by safeguarding the deployments to production
+* If the fix version of the dependency is available, it recommends the version to be used.
+* If the finding is not applicable or the a fix version is not available and the threat model is  acceptabel, you can also acknowledge the  risk  to make the image or function compliant.
 
 {% hint style="info" %}
 I have seen it in action to scan vulnerabilities in containers and functions. Application dependencies too are scanned using Trivy but I would rely on this tool for the former reports \(container and functions\).
