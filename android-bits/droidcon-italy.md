@@ -4,7 +4,7 @@ The conference about our little green robots was held in Torino Italy in April 2
 
 With 800 attendees and four different tracks, one was spoilt for choices. There were 57 speakers, including 3 Developer Advocate at Google and 13 Google Developer Experts from London, Dutch, Denver, Germany, Paris, and working at Intel, Facebook, Trello, Amazon, Spotify, JetBrains, Houston, Bologna etc sharing their experiences.
 
-Bhimsen and I presented a topic on [**Securely developing Android applications**](https://speakerdeck.com/nazneen/who-do-you-think-owns-your-android-application-1). It was my first talk at an international platform. We had a great audience; people were engaged and were really excited to chat afterwards. Yay!
+My colleague and I presented a topic on [**Securely developing Android applications**](https://speakerdeck.com/nazneen/who-do-you-think-owns-your-android-application-1). It was my first talk at an international platform. We had a great audience; people were engaged and were really excited to chat afterwards. Yay!
 
 Below is a summary of some sessions:
 
