@@ -84,6 +84,6 @@ There are some talks I could not attend but found them interesting. I would urge
 
 You can find the videos of some talks [here](https://www.youtube.com/channel/UC9f8652addezs8ZUuKPB4Ow/videos?sort=dd&flow=grid&view=0).
 
-> Thank you so much droidcon Italy for having me as a speaker!  
+> Thank you so much Droidcon Italy for having me as a speaker!  
 > I highly recommend signing up as a speaker\(next is on 7th-8th April 2017\) and sharing your experience.
 
