@@ -20,3 +20,7 @@
 * [Secure Infrastructure: Tools & Techniques](security-bits/secure-infrastructure-tools-and-techniques.md)
 * [DNS rebinding attacks - Useful resources](security-bits/dns-rebinding-attacks-useful-resources.md)
 
+## AWS
+
+* [AWS account access using saml2aws and assume-role](aws/aws-account-access-using-saml2aws-and-assume-role.md)
+
