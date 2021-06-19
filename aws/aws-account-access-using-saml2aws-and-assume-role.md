@@ -10,12 +10,16 @@ The below commands will help assume role into the required AWS account.
 
   1. This command will prompt you to choose a idp and the mfa option
   2. Post that, you will need to add the aws profile and the AWS instance url connected with the federated identity
-  3. Once you add the username and password, a file named ~/.aws/credentials will be created. Sensitive credential information would be stored in this file.
+
+             The url format: https://../app/amazon\_aws/&lt;identifier&gt;/sso/saml
+
+  3. This results in the following configuration in `~/.saml2aws`
 
   `saml2aws login -p <profile_name>` 
 
-  1. This command will login into the set AWS account using temporary credentials.
-  2. `<profile_name>`is the profile set during configuration, you have privilege to assume role into another account.
+  1. Once you add the username and password, a file named ~/.aws/credentials will be created. Sensitive credential information would be stored in this file.
+  2. This command will login into the set AWS account using temporary credentials.
+  3. `<profile_name>`is the profile set during configuration, you have privilege to assume role into another account.
 
 You would need to use version 2 of aws cli \([https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-sso.html)\) if you would want to login using sso. Using saml2aws is a convenient wrapper to use the command line to work with AWS services. It works with most of identity providers.
 
