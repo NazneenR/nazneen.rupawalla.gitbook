@@ -3,7 +3,8 @@
 ## SAST and SCA embedded in the path to production
 
 Prior to using Semgrep and Dependabot, I used Hawkeye extensively for detecting security vulnerabilities in custom code and in open source libraries.   
-You are wondering why does the title state semgrep and dependabot and then I start this note about using Hawkeye. Well, recently, as it was announced as not maintained anymore, I started looking for alternatives fulfilling these requirements
+You are wondering why does the title state semgrep and dependabot and then I start this note about using Hawkeye.   
+Well, recently, as it was announced as not maintained anymore, I started looking for alternatives fulfilling these requirements in existing toolchain and non-commercial tools
 
 * Should detect vulnerabilities in a number of languages - I do not want the cognitive load of integrating a new tool for a new language in my ecosystem
 * Should be easy to integrate in my path to production flow - I believe that any tool or process should be development first else these become bottlenecks towards delivery at speed
@@ -13,8 +14,8 @@ Unfortunately I did not get one tool that did all but I stumbled upon two differ
 
 Commercial tools like Veracode, Snyk, Checkmarx can cover these requirements but I am not covering my experiences with these tools in this blog. If it works out financially, definitely give these tools a try.  
   
-For now, let me share my experiences of using semgrep and dependabot.   
-For IaC, I will cover the tools in another blog post.
+For now, I shall share my experience of using semgrep and dependabot.   
+For IaC, I will cover the tools ad frameworks such as cfn\_nag, inspec, tfsec and dev-sec.io in another blog post.
 
 ## Semgrep
 
