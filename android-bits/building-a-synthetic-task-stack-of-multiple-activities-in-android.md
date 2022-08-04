@@ -14,7 +14,7 @@ The scenario we wanted to implement in Android was as follows:
 
 To implement this, we used **`TaskStackBuilder`**
 
-In `onCreate`of Activity A \(Splash Screen\), we implemented:
+In `onCreate`of Activity A (Splash Screen), we implemented:
 
 ```java
  Intent secondActivity = new Intent(this, SecondActivity.class);
@@ -60,14 +60,14 @@ stackBuilder.addNextIntent(secondActivity);
 But we faced a issue - **Two tasks were getting created for the app when the above scenario was executed.**
 {% endhint %}
 
-Looking at the internals, we saw the `TaskStackBuilder.create`returns a new TaskStackBuilder for launching a fresh task stack consisting of a series of activities. Internally, `Intent.FLAG_ACTIVITY_NEW_TASK` is set.  
-Then we realized that our activity C \(ParentActivity\) has a particular taskAffinity; different from the default one.
+Looking at the internals, we saw the `TaskStackBuilder.create`returns a new TaskStackBuilder for launching a fresh task stack consisting of a series of activities. Internally, `Intent.FLAG_ACTIVITY_NEW_TASK` is set.\
+Then we realized that our activity C (ParentActivity) has a particular taskAffinity; different from the default one.
 
-By default all activities have the same taskAffinity and therefore even though we set `Intent.FLAG_ACTIVITY_NEW_TASK`, the new Activity will still be started in the same task**.**  
+By default all activities have the same taskAffinity and therefore even though we set `Intent.FLAG_ACTIVITY_NEW_TASK`, the new Activity will still be started in the same task**.**\
 But, if the new Activity has a different taskAffinity, the new Activity will be started in a new task.
 
 {% hint style="success" %}
-**Solution:** We added the particular taskAffinity to Activity A and B.  
+**Solution:** We added the particular taskAffinity to Activity A and B.\
 **\*\*But a better approach, we heard is use** `startActivities`.\*\*
 {% endhint %}
 
@@ -75,15 +75,15 @@ On digging further, we understood it can be used to create a synthetic back stac
 
 **`startActivities(intents)`** is available from API 11
 
-So we created intents for Activity B and C and this worked as a breeze  
-`Intents[] intents = {parentActivity, secondActivity}    
-startActivities(intents);`
+So we created intents for Activity B and C and this worked as a breeze\
+`Intents[] intents = {parentActivity, secondActivity}`  \
+`startActivities(intents);`
 
 {% hint style="danger" %}
 **UPDATE:** We found a bug in our app while using `startActivities`
 {% endhint %}
 
-As stated above we had to launch ActivityA\(Splash Screen\) and then launch ActivityB. While launching the Splash Screen, we put the application in the background, the app crashes. What we understood is, as we are starting ActivityB from the non UI thread, it led to the crash. [Another related raised issue with startActivities.](https://code.google.com/p/android/issues/detail?id=70194)
+As stated above we had to launch ActivityA(Splash Screen) and then launch ActivityB. While launching the Splash Screen, we put the application in the background, the app crashes. What we understood is, as we are starting ActivityB from the non UI thread, it led to the crash. [Another related raised issue with startActivities.](https://code.google.com/p/android/issues/detail?id=70194)
 
 {% hint style="info" %}
 Therefore, we reverted to using TaskStackBuilder.
@@ -91,11 +91,10 @@ Therefore, we reverted to using TaskStackBuilder.
 
 **References:**
 
-[http://developer.android.com/reference/android/support/v4/content/ContextCompat.html\#startActivities%28android.content.Context,%20android.content.Intent%5B%5D%29 ](http://developer.android.com/reference/android/support/v4/content/ContextCompat.html#startActivities%28android.content.Context,%20android.content.Intent%5B%5D%29)  
+[http://developer.android.com/reference/android/support/v4/content/ContextCompat.html#startActivities%28android.content.Context,%20android.content.Intent%5B%5D%29 ](http://developer.android.com/reference/android/support/v4/content/ContextCompat.html#startActivities%28android.content.Context,%20android.content.Intent%5B%5D%29)\
 [http://stackoverflow.com/questions/21374610/use-of-android-taskaffinity](http://stackoverflow.com/questions/21374610/use-of-android-taskaffinity)
 
 We learned quite some new things while solving the above mentioned issue and therefore thought of sharing our learnings.
 
-Hope you find this post helpful.  
+Hope you find this post helpful.\
 Do you all know of any other better approach. Let us know.
-

@@ -1,4 +1,8 @@
-# Table trail
+---
+layout: editorial
+---
+
+# Table trial
 
 
 
