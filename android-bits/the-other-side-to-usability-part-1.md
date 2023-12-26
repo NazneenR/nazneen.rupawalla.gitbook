@@ -1,35 +1,35 @@
 # The Other Side to Usability - Part 1
 
-I presented the above topic at Mobile Developer Summit\(Bangalore\) on 12th October 2013 along with my colleague Abhinav Manchanda.  
+I presented the above topic at Mobile Developer Summit(Bangalore) on 12th October 2013 along with my colleague Abhinav Manchanda.\
 This presentation intented to enable developers who generally work on an Android application and want to come up with a nice and effective application but get lost in the Usability Jargon.
 
-**What comes to your mind when your hear the term 'Usability'?** I am sure you must have guessed the answer - Well designed, Easy to use, Stylish and good looking, Smooth, Easy to navigate through features.  
-These terms can be categorized into 4 major groups namely -  
-Engaging \(e.g Angry Birds\),  
-Well-styled\(Apps under Google have the same style\),  
-Effective\(e.g Instagram\)  
-Easy to Learn \(e.g Watsapp, Viber\)
+**What comes to your mind when your hear the term 'Usability'?** I am sure you must have guessed the answer - Well designed, Easy to use, Stylish and good looking, Smooth, Easy to navigate through features.\
+These terms can be categorized into 4 major groups namely -\
+Engaging (e.g Angry Birds),\
+Well-styled(Apps under Google have the same style),\
+Effective(e.g Instagram)\
+Easy to Learn (e.g Watsapp, Viber)
 
 {% hint style="warning" %}
-But what if your app is super engaging but before you can even engage your target audience the app takes a long time to start?  
-What if your app is well-styled but functionally useless?   
-What if your app is effective i.e gets the work done for you but it is difficult to navigate through the app?   
+But what if your app is super engaging but before you can even engage your target audience the app takes a long time to start?\
+What if your app is well-styled but functionally useless? \
+What if your app is effective i.e gets the work done for you but it is difficult to navigate through the app? \
 And lastly, extremely easy to learn but keeps crashing?
 {% endhint %}
 
 Usually, UI/UX developers focus on usability and application developers focus on the functionality. But at all times, one does not get to work with UX developers. In this case understanding and applying the jargon like [5Es of usability](http://www.wqusability.com/articles/getting-started.html) viz., effective, efficient, engaging, error tolerant and easy to learn, app development becomes tricky.
 
-So, here I present some **handy tricks** that can help improve the effectiveness and usability of your application.  
+So, here I present some **handy tricks** that can help improve the effectiveness and usability of your application.\
 Let us build a shopping application that shows us the items and if one clicks on any one of the items, you get more details of the product.
 
-If you are only concerned about the functionality, this would be the typical workflow one would come up with:  
-User launches the application -&gt; Call is made to fetch the products -&gt; Data is stored in the DB -&gt; Call to get the images
+If you are only concerned about the functionality, this would be the typical workflow one would come up with:\
+User launches the application -> Call is made to fetch the products -> Data is stored in the DB -> Call to get the images
 
-![Blank Screen](../.gitbook/assets/blank-screen.png)
+![Blank Screen](<../.gitbook/assets/Blank Screen.png>)
 
 For all the above steps – the user just sees the black screen as seen above and then sees the products as below
 
-![Screen rendered with the products](../.gitbook/assets/screen-with-products.png)
+![Screen rendered with the products](<../.gitbook/assets/Screen with products.png>)
 
 {% hint style="danger" %}
 In the above case before one can engage the user, the users will keep waiting and waiting for the app to load and then give up and uninstall the app. **The app fails to engage the user**.
@@ -83,7 +83,7 @@ public void getView(int position, View convertView, ViewGroup parent){
 }
 ```
 
-And all these steps are executing on the main thread i.e the UI thread.  
+And all these steps are executing on the main thread i.e the UI thread.\
 So, a possible solution to solve the above problem is to introduce a **loader** and then **execute all these tasks on the worker thread.**
 
 Outcome of introducing a loader:
@@ -92,11 +92,11 @@ Outcome of introducing a loader:
 2. Loader is seen when the call is made to fetch the products
 3. Loader is seen when the data is being stored to the db
 4. Loader is seen when the call is made to get the images
-5. All the products are rendered 
+5. All the products are rendered&#x20;
 
-![Loader seen during step 2,3,4](../.gitbook/assets/loader.png)
+![Loader seen during step 2,3,4](../.gitbook/assets/Loader.png)
 
-Well, atleast the users know that the app has not hung like the previous case and it is definitely executing something.  
+Well, atleast the users know that the app has not hung like the previous case and it is definitely executing something.\
 The ProgressDialog helps us achieve the above behavior
 
 ```java
@@ -140,8 +140,8 @@ If we think of it, **it is the images that require two calls to be fetched and r
 
 Think about **Google Play Store** - When you want to download an application, the description and other details come up though the screenshots and videos take time to render and you do not get frustrated because you see the application in action.
 
-Each Android app has at least one thread where its code is running. It’s called the **UI thread because it handles all drawings on the screen and user interactions.**  
-Each time a text is shown, or an activity displayed, it’s on the UI thread. Each time a user taps on the screen, the UI thread identifies what and where was touched and call the appropriate functions.  
+Each Android app has at least one thread where its code is running. It’s called the **UI thread because it handles all drawings on the screen and user interactions.**\
+Each time a text is shown, or an activity displayed, it’s on the UI thread. Each time a user taps on the screen, the UI thread identifies what and where was touched and call the appropriate functions.\
 **If you perform a long running operation directly on the UI Thread, for example downloading a file from the internet, the user interface of your application will “freeze” until the corresponding task is finished.** **The** **UI** **thread will have less time to draw on the screen and respond to the user, and the app will feel slow and sluggish.**
 
 {% hint style="info" %}
@@ -258,14 +258,13 @@ The result:
 3. Data is stored in the DB - **Loader**
 4. Call to get the images
 
-![Non blocking view ](../.gitbook/assets/screen-shot-2020-06-26-at-10.18.27-am.png)
+![Non blocking view ](<../.gitbook/assets/Screen Shot 2020-06-26 at 10.18.27 AM.png>)
 
 The **UI thread is not blocked** till all the resources are fetched. Usability achieved to a certain extent!
 
-he code for the Asynchronous Response fetching and Asynchronous Image Fetching, is usually used on multiple projects and therefore, Abhinav has put it all in one place and it can be found [here](https://github.com/androidplugins).  
-**For more on executing internet intensive and heavy operations in the background:**  
-[ http://www.terlici.com/2012/10/10/blazingly-fast-android-apps.html](https://github.com/NazneenR/nazneenr.github.io/tree/66256549b1e1dfd537e19c862b0a787d165f2382/2012/10/10/blazingly-fast-android-apps.html)  
+he code for the Asynchronous Response fetching and Asynchronous Image Fetching, is usually used on multiple projects and therefore, Abhinav has put it all in one place and it can be found [here](https://github.com/androidplugins).\
+**For more on executing internet intensive and heavy operations in the background:**\
+[ http://www.terlici.com/2012/10/10/blazingly-fast-android-apps.html](https://github.com/NazneenR/nazneenr.github.io/tree/66256549b1e1dfd537e19c862b0a787d165f2382/2012/10/10/blazingly-fast-android-apps.html)\
 [ http://androidresearch.wordpress.com/2012/03/17/understanding-asynctask-once-and-forever/](https://github.com/NazneenR/nazneenr.github.io/tree/66256549b1e1dfd537e19c862b0a787d165f2382/2012/03/17/understanding-asynctask-once-and-forever/README.md)
 
 Some more tricks will follow in the next post.
-

@@ -2,7 +2,7 @@
 
 * [About me](README.md)
 
-## MySQL <a id="mysql-setup"></a>
+## MySQL <a href="#mysql-setup" id="mysql-setup"></a>
 
 * [Setting up MySQL](mysql-setup/setting-up-mysql.md)
 
@@ -16,6 +16,7 @@
 
 ## Security Bits
 
+* [Threat Modelling for AI - Changing the way you view Trust Boundaries](security-bits/threat-modelling-for-ai-changing-the-way-you-view-trust-boundaries.md)
 * [Who Do You Think Owns Your Android Application?](security-bits/who-do-you-think-owns-your-android-application.md)
 * [Secure Infrastructure: Tools & Techniques](security-bits/secure-infrastructure-tools-and-techniques.md)
 * [DNS rebinding attacks - Useful resources](security-bits/dns-rebinding-attacks-useful-resources.md)
@@ -24,4 +25,3 @@
 ## AWS
 
 * [AWS account access using saml2aws and assume-role](aws/aws-account-access-using-saml2aws-and-assume-role.md)
-
