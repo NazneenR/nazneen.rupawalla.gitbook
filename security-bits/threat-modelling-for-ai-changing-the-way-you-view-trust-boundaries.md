@@ -19,12 +19,108 @@ We can use the list created by [OWASP for LLM](https://llmtop10.com/) where they
 
 Here is the list of questions I have collated for helping me with threat modelling. This is by no means a exhaustive list but should be treated as a starting point
 
+1. **Prompt Injection:** Attackers can manipulate LLMs through crafted inputs, causing it to execute the attacker's intentions
+   * Attack Scenarios:
+     * A malicious user uploads a resume with a prompt injection. Due to the prompt injection, the LLM says yes, despite the actual resume contents
+     * An attacker provides a direct prompt injection to an LLM-based support chatbot. The injection contains “forget all previous instructions” and new instructions to query private data stores are executed.
+   * **Questions:**
+     * What kind of input validation/sanitization are you doing on that content?
+     * Does your LLM follow the principle of least privilege?\
+
+2. **Insecure Output Handling:** Insecure Output Handling is a vulnerability that arises when a downstream component blindly accepts LLM output without proper scrutiny
+   * Attack Scenarios:
+     *   An application utilizes an LLM plugin to generate responses for a chatbot feature.
+
+         However, the application directly passes the LLM-generated response into an internal function without proper validation.
+
+         This allows an attacker to manipulate the LLM output to execute arbitrary commands
+   * **Questions:**
+     * Is your LLM data directly being entered into a system shell or similar functions?
+     * Is the output being encoded?\
+
+3. **Training Data Poisoning:** Manipulation of the data to introduce vulnerabilities, backdoors or biases that could compromise the model’s security, effectiveness or ethical behavior.&#x20;
+   * Attack Scenarios:
+     * The victim model trains using falsified information which is reflected in outputs of generative AI prompts to its consumers.
+     * If the training data is not correctly filtered and/or sanitized, a malicious user of the application may try to influence and inject toxic data into the model
+   *   **Questions:**
+
+       * If your data is poisoned or tampered with, how would you know?
+       * What telemetry do you have to detect a skew in the quality of your training data?
+       * Are you training from user-supplied inputs?&#x20;
+       * Are you ensuring sufficient sandboxing to prevent the model from scraping unintended data sources?
 
 
-<table><thead><tr><th width="129">Category</th><th width="185">What does it mean?</th><th width="202">Attack Scenarios</th><th>Questions</th></tr></thead><tbody><tr><td>Prompt Injection</td><td>Attackers can manipulate LLMs through crafted inputs, causing it to execute the attacker's intentions</td><td>1) A malicious user uploads a resume with a prompt injection. Due to the prompt injection, the LLM says yes, despite the actual resume contents<br><br>2) An attacker provides a direct prompt injection to an LLM-based support chatbot. The injection contains “forget all previous instructions” and new instructions to query private data stores are executed.</td><td>1) What kind of input validation/sanitization are you doing on that content?<br><br>2) Does your LLM follow the principle of least privilege?</td></tr><tr><td>Insecure Output Handling</td><td>Insecure Output Handling is a vulnerability that arises when a downstream component blindly accepts LLM output without proper scrutiny</td><td><p>1) An application utilizes an LLM plugin to generate responses for a chatbot feature.</p><p>However, the application directly passes the LLM-generated response into an internal function without proper validation.</p><p>This allows an attacker to manipulate the LLM output to execute arbitrary commands</p></td><td>1) Is your LLM data directly being entered into a system shell or similar functions?<br><br>2) Is the output being encoded?</td></tr><tr><td>Training Data Poisoning</td><td>Manipulation of the data to introduce vulnerabilities, backdoors or biases that could compromise the model’s security, effectiveness or ethical behavior. </td><td>1) The victim model trains using falsified information which is reflected in outputs of generative AI prompts to its consumers.<br><br>2) If the training data is not correctly filtered and/or sanitized, a malicious user of the application may try to influence and inject toxic data into the model</td><td><p>1) If your data is poisoned or tampered with, how would you know?</p><p><br>2) What telemetry do you have to detect a skew in the quality of your training data?</p><p><br>3) Are you training from user-supplied inputs? </p><p><br>4) Are you ensuring sufficient sandboxing to prevent the model from scraping unintended data sources?<br></p></td></tr><tr><td>Model Denial of Service</td><td>An attacker interacts with an LLM in a method that consumes an exceptionally high amount of resources, which results in a decline in the quality of service for them and other users, as well as potentially incurring high resource costs.</td><td>An attacker continuously bombards the LLM with input that exceeds its context window. The attacker may use automated scripts or tools to send a high volume of input, overwhelming the LLM's processing capabilities. As a result, the LLM consumes excessive computational resources, leading to a significant slowdown or complete unresponsiveness of the system.</td><td>1) Do you cap resource use per request or step?<br><br>2) Do you continuously monitor the resource utilization of the LLM to identify abnormal spikes or patterns that may indicate a DoS attack?</td></tr><tr><td><p></p><p>Supply Chain Vulnerabilities</p></td><td>The supply chain in LLMs can be vulnerable, impacting the integrity of training data, ML models, and deployment platforms. These vulnerabilities can lead to biased outcomes, security breaches, or even complete system failures.</td><td>An attacker exploits a vulnerable Python library to compromise a system. This happened in the first Open AI data breach.</td><td>1) Do you implement a patching policy to mitigate vulnerable or outdated components?<br><br>2) Do you have a procedure to vet the data sources?</td></tr><tr><td><p></p><p>Sensitive Information Disclosure</p></td><td><p>LLM applications can inadvertently disclose sensitive information, proprietary algorithms, or confidential data, leading to unauthorized access, intellectual property theft, and privacy breaches. </p><p><br></p></td><td>Personal data such as PII is leaked into the model via training data due to either negligence from the user themselves, or the LLM application. This case could increase risk and probability of the attack</td><td>1) How sensitive is our training data?<br><br>2) How are you ensuring proper filtering of sensitive information in the LLM responses?<br><br>3) Is access to external data sources (orchestration of data at runtime) limited?<br><br>4) Do you prevent overfitting?</td></tr><tr><td>Insecure Plugin Design</td><td>LLM plugins are extensions that, when enabled, are called automatically by the model during user interactions. They are driven by the model, and there is no application control over the execution.</td><td>An attacker uses indirect prompt injection to exploit an insecure code management plugin with no input validation and weak access control to transfer repository ownership and lock out the user from their repositories</td><td>1) Do you apply a layer of typed calls where parsing of requests is introduced?<br><br>2) Does your plugin design consider least-privilege access control?<br><br>3) Do you use API keys to provide context for custom authorization decisions which reflect the plugin route rather than the default interactive user?</td></tr><tr><td>Excessive Agency</td><td>An LLM-based system is often granted a degree of agency by its developer - the ability to interface with other systems and undertake actions in response to a prompt.</td><td>An LLM-based personal assistant app is granted access to an individual’s mailbox via a plugin in order to summarize the content of incoming emails. To achieve this functionality, the email plugin requires the ability to read messages, however the plugin that the system developer has chosen to use also contains functions for sending messages. The LLM is vulnerable to an indirect prompt injection attack, whereby a maliciously-crafted incoming email tricks the LLM into commanding the email plugin to call the ‘send message’ function to send spam from the user’s mailbox.</td><td>1) Do you limit the functions that are implemented in LLM plugins/tools to the minimum necessary?<br><br>2) Do you track user authorization and security scope to ensure actions taken on behalf of a user are executed on downstream systems in the context of that specific user?<br><br>3) Do you log and monitor the activity of LLM plugins/tools and downstream systems to identify where undesirable actions are taking place, and respond accordingly?</td></tr><tr><td>Overreliance (very human vulnerability for a tech list)</td><td>Overreliance on LLMs can lead to serious consequences such as misinformation, legal issues, and security vulnerabilities. It occurs when an LLM is trusted to make critical decisions or generate content without adequate oversight or validation.</td><td><p></p><p>1) AI fed misleading info leading to disinformation </p><p><br>2) AI's code suggestions introduce security vulnerabilities</p><p><br>3) Developer unknowingly integrates malicious package suggested by AI.</p></td><td><p>1) What is the process in place to regularly monitor and review LLM outputs?<br><br>2) Do you cross-check LLM outputs with trusted sources?<br><br></p><p><br></p></td></tr><tr><td>Model Theft</td><td>LLM model theft involves unauthorized access to and exfiltration of LLM models, risking economic loss, reputation damage, and unauthorized access to sensitive data. Robust security measures are essential to protect these models.</td><td>1) An attacker queries the API with carefully selected inputs and collects sufficient number of outputs to create a shadow model.<br><br>2) A security control failure is present within the supply-chain and leads to data leaks of proprietary model information</td><td><p>1) Is RBAC implemented?<br><br>2) Is rate limiting implemented?<br><br>3) Will extraction queries be detected?<br><br>4) What are the policies in place to recover from a theft or breach? </p><p><br></p></td></tr></tbody></table>
+4. **Model Denial of Service:** An attacker interacts with an LLM in a method that consumes an exceptionally high amount of resources, which results in a decline in the quality of service for them and other users, as well as potentially incurring high resource costs.
+   * Attack Scenarios:
+     * An attacker continuously bombards the LLM with input that exceeds its context window. The attacker may use automated scripts or tools to send a high volume of input, overwhelming the LLM's processing capabilities. As a result, the LLM consumes excessive computational resources, leading to a significant slowdown or complete unresponsiveness of the system.
+   *   **Questions:**
+
+       * Do you cap resource use per request or step?
+       * Do you continuously monitor the resource utilization of the LLM to identify abnormal spikes or patterns that may indicate a DoS attack?
+
+
+5. **Supply Chain Vulnerabilities:** The supply chain in LLMs can be vulnerable, impacting the integrity of training data, ML models, and deployment platforms. These vulnerabilities can lead to biased outcomes, security breaches, or even complete system failures.
+   * Attack Scenarios:
+     * An attacker exploits a vulnerable Python library to compromise a system. This happened in the first Open AI data breach.
+   *   **Questions:**
+
+       * Do you implement a patching policy to mitigate vulnerable or outdated components?
+       * Do you have a procedure to vet the data sources?
+
+
+6. **Sensitive Information Disclosure:** LLM applications can inadvertently disclose sensitive information, proprietary algorithms, or confidential data, leading to unauthorized access, intellectual property theft, and privacy breaches.&#x20;
+   * Attack Scenarios:
+     * Personal data such as PII is leaked into the model via training data due to either negligence from the user themselves, or the LLM application. This case could increase risk and probability of the attack
+   *   **Questions:**
+
+       * How sensitive is our training data?
+       * How are you ensuring proper filtering of sensitive information in the LLM responses?
+       * Is access to external data sources (orchestration of data at runtime) limited?
+       * Do you prevent overfitting?
+
+
+7. **Insecure Plugin Design:** LLM plugins are extensions that, when enabled, are called automatically by the model during user interactions. They are driven by the model, and there is no application control over the execution.
+   * Attack Scenarios:
+     * An attacker uses indirect prompt injection to exploit an insecure code management plugin with no input validation and weak access control to transfer repository ownership and lock out the user from their repositories
+   *   **Questions**:
+
+       * Do you apply a layer of typed calls where parsing of requests is introduced?
+       * Does your plugin design consider least-privilege access control?
+       * Do you use API keys to provide context for custom authorization decisions which reflect the plugin route rather than the default interactive user?
+
+
+8. **Excessive Agency:** An LLM-based system is often granted a degree of agency by its developer - the ability to interface with other systems and undertake actions in response to a prompt.
+   * **Attack Scenarios:**
+     * An LLM-based personal assistant app is granted access to an individual’s mailbox via a plugin in order to summarize the content of incoming emails. To achieve this functionality, the email plugin requires the ability to read messages, however the plugin that the system developer has chosen to use also contains functions for sending messages. The LLM is vulnerable to an indirect prompt injection attack, whereby a maliciously-crafted incoming email tricks the LLM into commanding the email plugin to call the ‘send message’ function to send spam from the user’s mailbox.
+   *   **Questions:**
+
+       * Do you limit the functions that are implemented in LLM plugins/tools to the minimum necessary?
+       * Do you track user authorization and security scope to ensure actions taken on behalf of a user are executed on downstream systems in the context of that specific user?
+       * Do you log and monitor the activity of LLM plugins/tools and downstream systems to identify where undesirable actions are taking place, and respond accordingly?
+
+
+9. **Overreliance** (very human vulnerability for a tech list): Overreliance on LLMs can lead to serious consequences such as misinformation, legal issues, and security vulnerabilities. It occurs when an LLM is trusted to make critical decisions or generate content without adequate oversight or validation.
+   * Attack Scenarios:
+     * AI fed misleading info leading to disinformation&#x20;
+     * AI's code suggestions introduce security vulnerabilities
+     * Developer unknowingly integrates malicious package suggested by AI.
+   *   Questions:
+
+       * What is the process in place to regularly monitor and review LLM outputs?
+       * Do you cross-check LLM outputs with trusted sources?
+
+
+10. **Model Theft:** LLM model theft involves unauthorized access to and exfiltration of LLM models, risking economic loss, reputation damage, and unauthorized access to sensitive data. Robust security measures are essential to protect these models.
+    * Attack Scenarios:&#x20;
+      * An attacker queries the API with carefully selected inputs and collects sufficient number of outputs to create a shadow model.
+      * A security control failure is present within the supply-chain and leads to data leaks of proprietary model information
+    * **Questions**:
+      * Is RBAC implemented?
+      * Is rate limiting implemented?
+      * Will extraction queries be detected?
+      * What are the policies in place to recover from a theft or breach?&#x20;
 
 \
 This is my attempt to make sense of various frameworks out there with common attack scenarios, vulnerabilities and references that aim to bridge the divide between general application security principles and the specific challenges posed by LLMs.\
 \
 As you attempt to threat model LLMs, do share your questions so we all practice and get better at this together.&#x20;
-
