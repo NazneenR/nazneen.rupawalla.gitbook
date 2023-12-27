@@ -15,19 +15,20 @@ Threat modelling is a risk-based approach to designing secure systems. It is bas
 
 ### But how do we get started with threat modelling LLMs?&#x20;
 
-We can use the list created by [OWASP for LLM](https://llmtop10.com/) where they have created an actionable resource, with a set of vulnerabilities, along with common examples, prevention tips, attack scenarios, and references and use this resource to build the questions to ask in a threat modeling exercise.
+We can use the list created by [OWASP for LLM](https://llmtop10.com/) where they have created an actionable resource, with a set of vulnerabilities, along with common examples, prevention tips, attack scenarios, and references and use this resource to build the questions to ask in a threat modeling exercise.&#x20;
 
 ### Questions:
 
-Here is the list of questions I have collated for helping me with threat modelling. This is by no means a exhaustive list but should be treated as a starting point
+Here is the list of questions I have collated for helping me with threat modelling for AI. This is by no means a exhaustive list but should be treated as a starting point. The STRIDE methodology for web applications still stand tall and the below questions are only in addition to the questions mentioned here - [https://thoughtworksinc.github.io/sensible-security-conversations/](https://thoughtworksinc.github.io/sensible-security-conversations/)&#x20;
 
 1. **Prompt Injection:** Attackers can manipulate LLMs through crafted inputs, causing it to execute the attacker's intentions
    * Attack Scenarios:
      * A malicious user uploads a resume with a prompt injection. Due to the prompt injection, the LLM says yes, despite the actual resume contents
      * An attacker provides a direct prompt injection to an LLM-based support chatbot. The injection contains “forget all previous instructions” and new instructions to query private data stores are executed.
    * **Questions:**
-     * What kind of input validation/sanitization are you doing on that content?
-     * Does your LLM follow the principle of least privilege?\
+     * What kind of input validation and sanitization are you doing on that content?
+     * Does your LLM follow the principle of least privilege?
+     * Do privileged operations require a human to approve the action? \
 
 2. **Insecure Output Handling:** Insecure Output Handling is a vulnerability that arises when a downstream component blindly accepts LLM output without proper scrutiny
    * Attack Scenarios:
@@ -59,6 +60,8 @@ Here is the list of questions I have collated for helping me with threat modelli
 
        * Do you cap resource use per request or step?
        * Do you continuously monitor the resource utilization of the LLM to identify abnormal spikes or patterns that may indicate a DoS attack?
+       * Do you enforce API rate limits to restrict the number of requests an individual user or IP address can make within a specific timeframe?
+       * Do you limit the number of queued actions and the number of total actions in a system reacting to LLM responses?
 
 
 5. **Supply Chain Vulnerabilities:** The supply chain in LLMs can be vulnerable, impacting the integrity of training data, ML models, and deployment platforms. These vulnerabilities can lead to biased outcomes, security breaches, or even complete system failures.
@@ -68,6 +71,7 @@ Here is the list of questions I have collated for helping me with threat modelli
 
        * Do you implement a patching policy to mitigate vulnerable or outdated components?
        * Do you have a procedure to vet the data sources?
+       * Do you implement monitoring to cover component and environment vulnerabilities scanning, use of unauthorized plugins, and out-of-date components, including the model and its artifacts?
 
 
 6. **Sensitive Information Disclosure:** LLM applications can inadvertently disclose sensitive information, proprietary algorithms, or confidential data, leading to unauthorized access, intellectual property theft, and privacy breaches.&#x20;
@@ -75,10 +79,12 @@ Here is the list of questions I have collated for helping me with threat modelli
      * Personal data such as PII is leaked into the model via training data due to either negligence from the user themselves, or the LLM application. This case could increase risk and probability of the attack
    *   **Questions:**
 
-       * How sensitive is our training data?
+       * Is the classification done to record the sensitivity of your training data?
        * How are you ensuring proper filtering of sensitive information in the LLM responses?
        * Is access to external data sources (orchestration of data at runtime) limited?
        * Do you prevent overfitting?
+       * Is the rule of least privilege applied?
+       * How do you make sure to not train the model on information that the highest-privileged user can access which may be displayed to a lower-privileged user?
 
 
 7. **Insecure Plugin Design:** LLM plugins are extensions that, when enabled, are called automatically by the model during user interactions. They are driven by the model, and there is no application control over the execution.
@@ -86,9 +92,11 @@ Here is the list of questions I have collated for helping me with threat modelli
      * An attacker uses indirect prompt injection to exploit an insecure code management plugin with no input validation and weak access control to transfer repository ownership and lock out the user from their repositories
    *   **Questions**:
 
-       * Do you apply a layer of typed calls where parsing of requests is introduced?
+       * Do you apply a layer of typed calls where parsing of requests is introduced and strict parameterized input is not possible?
        * Does your plugin design consider least-privilege access control?
+       * Do your plugins use appropriate authentication identities, such as OAuth2, to apply effective authorization and access control?
        * Do you use API keys to provide context for custom authorization decisions which reflect the plugin route rather than the default interactive user?
+       * Is manual user authorization and confirmation of any action taken required by your sensitive plugins?
 
 
 8. **Excessive Agency:** An LLM-based system is often granted a degree of agency by its developer - the ability to interface with other systems and undertake actions in response to a prompt.
@@ -98,6 +106,7 @@ Here is the list of questions I have collated for helping me with threat modelli
 
        * Do you limit the functions that are implemented in LLM plugins/tools to the minimum necessary?
        * Do you track user authorization and security scope to ensure actions taken on behalf of a user are executed on downstream systems in the context of that specific user?
+       * Do you implement authorization in downstream systems rather than relying on an LLM to decide if an action is allowed or not?
        * Do you log and monitor the activity of LLM plugins/tools and downstream systems to identify where undesirable actions are taking place, and respond accordingly?
 
 
