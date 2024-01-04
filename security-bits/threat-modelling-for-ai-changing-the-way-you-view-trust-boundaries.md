@@ -19,7 +19,7 @@ We can use the list created by [OWASP for LLM](https://llmtop10.com/) where they
 
 ### Questions:
 
-Here is the list of questions I have collated for helping me with threat modelling for AI. This is by no means a exhaustive list but should be treated as a starting point. The STRIDE methodology for web applications still stand tall and the below questions are only in addition to the questions mentioned here - [https://thoughtworksinc.github.io/sensible-security-conversations/](https://thoughtworksinc.github.io/sensible-security-conversations/)&#x20;
+Here is the list of questions I have collated for helping me with threat modelling for AI. This is by no means a exhaustive list but should be treated as a starting point. The STRIDE methodology for web applications still stands tall and the below questions are only in addition to those mentioned here - [https://thoughtworksinc.github.io/sensible-security-conversations/](https://thoughtworksinc.github.io/sensible-security-conversations/)&#x20;
 
 1. **Prompt Injection:** Attackers can manipulate LLMs through crafted inputs, causing it to execute the attacker's intentions
    * Attack Scenarios:
