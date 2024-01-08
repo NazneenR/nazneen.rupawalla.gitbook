@@ -5,9 +5,29 @@ This blog will highlight the frameworks that currently exist to prepare for thre
 This is an interesting topic for me because businesses eager to harness the potential of LLMs, are rapidly integrating them into their operations but these use cases challenge the current set understanding of the trust boundaries as well as has outpaced the establishment of comprehensive security protocols, leaving many applications vulnerable to high-risk issues. \
 
 
+Trust boundaries refer to the demarcation between secure/under our control/trusted and unsecured/beyond our control/untrusted areas within a system or between systems. When integrating AI/ML-based services or products, these trust boundaries undergo  shifts and expansions due to the inherent nature of AI. \
+\
+Here are a few ways in which the trust boundaries change with AI:
+
+{% tabs %}
+{% tab title="Increased Complexity of Data Handling" %}
+AI systems often deal with vast amounts of data. Trust boundaries expand to encompass not just the AI model but also the data it trains on, requiring secure handling from data collection to processing and storage.
+{% endtab %}
+
+{% tab title="Dynamic and Learning Nature of AI" %}
+AI models continuously learn and adapt based on new data. The trust boundaries extend beyond static systems to include the ongoing learning process, necessitating measures to ensure the integrity of incoming data and the adaptation process itself.
+{% endtab %}
+
+{% tab title="Interconnectedness in Systems" %}
+As AI becomes integrated into larger systems or ecosystems, the trust boundaries expand across interconnected components, requiring a comprehensive security approach to safeguard the entire system. AI models can be susceptible to adversarial attacks, where manipulated inputs lead to incorrect outputs, and affect downstream systems
+{% endtab %}
+{% endtabs %}
+
 ### What can help us navigate this ambiguity and secure AI based applications?
 
-> Threat Modelling can help with understanding how do the trust boundaries change with respect to creating products/services interacting with or taking dependencies on AI/ML-based services or for products/services being built with AI/ML at their core
+{% hint style="success" %}
+Threat Modelling can help with understanding how do the trust boundaries change with respect to creating products/services interacting with or taking dependencies on AI/ML-based services or for products/services being built with AI/ML at their core
+{% endhint %}
 
 With threat modeling, we can get a better picture early on to think through these scenarios to safeguard our models and the apps relying on these models. We can predict some of these threats and and plan approaches to deal with them via threat modelling
 
@@ -134,4 +154,4 @@ Here is the list of questions I have collated for helping me with threat modelli
 \
 This is my attempt to make sense of various frameworks out there with common attack scenarios, vulnerabilities and references that aim to bridge the divide between general application security principles and the specific challenges posed by LLMs.\
 \
-As you attempt to threat model LLMs, do share your questions so we all practice and get better at this together. Share your questions [here](threat-modelling-for-ai-changing-the-way-you-view-trust-boundaries.md).
+As you threat model LLMs, do share your questions so we all practice and get better at this together. Share your questions [here](threat-modelling-for-ai-changing-the-way-you-view-trust-boundaries.md).

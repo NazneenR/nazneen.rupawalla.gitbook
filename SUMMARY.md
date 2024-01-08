@@ -2,10 +2,6 @@
 
 * [About me](README.md)
 
-## MySQL <a href="#mysql-setup" id="mysql-setup"></a>
-
-* [Setting up MySQL](mysql-setup/setting-up-mysql.md)
-
 ## Android Bits
 
 * [The Other Side to Usability - Part 1](android-bits/the-other-side-to-usability-part-1.md)
@@ -25,3 +21,7 @@
 ## AWS
 
 * [AWS account access using saml2aws and assume-role](aws/aws-account-access-using-saml2aws-and-assume-role.md)
+
+## MySQL
+
+* [Setting up MySQL](mysql/setting-up-mysql.md)
