@@ -2,13 +2,9 @@
 
 * [About me](README.md)
 
-## Android Bits
+## Conference Talks and Panels
 
-* [The Other Side to Usability - Part 1](android-bits/the-other-side-to-usability-part-1.md)
-* [The Other Side to Usability - Part 2](android-bits/the-other-side-to-usability-part-2.md)
-* [Building a synthetic task stack of multiple activities in Android](android-bits/building-a-synthetic-task-stack-of-multiple-activities-in-android.md)
-* [Linking a text having a phone number in Android](android-bits/linking-a-text-having-a-phone-number-in-android.md)
-* [DROIDCON Italy](android-bits/droidcon-italy.md)
+* [Nazneen's speaking engagements](conference-talks-and-panels/nazneens-speaking-engagements.md)
 
 ## Security Bits
 
@@ -18,6 +14,14 @@
 * [DNS rebinding attacks - Useful resources](security-bits/dns-rebinding-attacks-useful-resources.md)
 * [Semgrep and Dependabot in path to production - SAST and SCA Tooling](security-bits/semgrep-and-dependabot-in-path-to-production-sast-and-sca-osa.md)
 
+## Android Bits
+
+* [The Other Side to Usability - Part 1](android-bits/the-other-side-to-usability-part-1.md)
+* [The Other Side to Usability - Part 2](android-bits/the-other-side-to-usability-part-2.md)
+* [Building a synthetic task stack of multiple activities in Android](android-bits/building-a-synthetic-task-stack-of-multiple-activities-in-android.md)
+* [Linking a text having a phone number in Android](android-bits/linking-a-text-having-a-phone-number-in-android.md)
+* [DROIDCON Italy](android-bits/droidcon-italy.md)
+
 ## AWS
 
 * [AWS account access using saml2aws and assume-role](aws/aws-account-access-using-saml2aws-and-assume-role.md)
@@ -25,7 +29,3 @@
 ## MySQL
 
 * [Setting up MySQL](mysql/setting-up-mysql.md)
-
-## Conference Talks and Panels
-
-* [Nazneen's speaking engagements](conference-talks-and-panels/nazneens-speaking-engagements.md)
