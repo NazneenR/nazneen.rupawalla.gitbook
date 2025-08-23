@@ -25,3 +25,7 @@
 ## MySQL
 
 * [Setting up MySQL](mysql/setting-up-mysql.md)
+
+## Conference Talks and Panels
+
+* [Nazneen's speaking engagements](conference-talks-and-panels/nazneens-speaking-engagements.md)
