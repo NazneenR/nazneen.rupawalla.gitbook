@@ -10,6 +10,6 @@ Beyond my professional interests, I am deeply passionate about the learning and 
 
 In my leisure time, I indulge in swimming, dancing, and traveling, while also exploring different cuisines and pursuing my interest in numismatics.
 
-I chronicle my travel adventures on my travel blog: [Quests With Nazneen](https://questswithnazneen.travel.blog/)
+I chronicle my travel adventures on my youtube channel: [Quests With Nazneen](https://www.youtube.com/@nm_in_wanderlust)
 
 Connect with me on [Linkedin](https://www.linkedin.com/in/nazneen-rupawalla-4b8a8a3b) or [Mastodan](https://mastodon.social/@nazneenr) to exchange ideas, offer suggestions on my notes and blogs. You are also welcome to share your input via pull requests on the repository.
