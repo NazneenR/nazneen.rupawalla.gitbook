@@ -149,6 +149,4 @@ Here is the list of questions I have collated for helping me with threat modelli
       * What are the policies in place to recover from a theft or breach?&#x20;
 
 \
-This is my attempt to make sense of various frameworks out there with common attack scenarios, vulnerabilities and references that aim to bridge the divide between general application security principles and the specific challenges posed by LLMs.\
-\
-As you threat model LLMs, do share your questions so we all practice and get better at this together. Share your questions [here](threat-modelling-for-ai-changing-the-way-you-view-trust-boundaries.md).
+This is my attempt to make sense of various frameworks out there with common attack scenarios, vulnerabilities and references that aim to bridge the divide between general application security principles and the specific challenges posed by LLMs.
