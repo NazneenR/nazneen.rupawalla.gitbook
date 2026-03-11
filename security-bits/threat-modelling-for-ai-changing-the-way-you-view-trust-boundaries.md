@@ -2,8 +2,7 @@
 
 This blog will highlight the frameworks that currently exist to prepare for threat modelling products/services interacting with or taking dependencies on AI/ML-based services
 
-This is an interesting topic for me because businesses eager to harness the potential of LLMs, are rapidly integrating them into their operations but these use cases challenge the current set understanding of the trust boundaries as well as has outpaced the establishment of comprehensive security protocols, leaving many applications vulnerable to high-risk issues. \
-
+This is an interesting topic for me because businesses eager to harness the potential of LLMs, are rapidly integrating them into their operations but these use cases challenge the current set understanding of the trust boundaries as well as has outpaced the establishment of comprehensive security protocols, leaving many applications vulnerable to high-risk issues. <br>
 
 Trust boundaries refer to the demarcation between secure/under our control/trusted and unsecured/beyond our control/untrusted areas within a system or between systems. When integrating AI/ML-based services or products, these trust boundaries undergo  shifts and expansions due to the inherent nature of AI. \
 \
@@ -39,7 +38,7 @@ We can use the list created by [OWASP for LLM](https://llmtop10.com/) where they
 
 ### Questions:
 
-Here is the list of questions I have collated for helping me with threat modelling for AI. This is by no means a exhaustive list but should be treated as a starting point. The STRIDE methodology for web applications still stands tall and the below questions are only in addition to those mentioned here - [https://thoughtworksinc.github.io/sensible-security-conversations/](https://thoughtworksinc.github.io/sensible-security-conversations/)&#x20;
+Here is the list of questions I have collated for helping me with threat modelling for AI. This is by no means a exhaustive list but should be treated as a starting point.&#x20;
 
 1. **Prompt Injection:** Attackers can manipulate LLMs through crafted inputs, causing it to execute the attacker's intentions
    * Attack Scenarios:
@@ -48,8 +47,7 @@ Here is the list of questions I have collated for helping me with threat modelli
    * **Questions:**
      * What kind of input validation and sanitization are you doing on that content?
      * Does your LLM follow the principle of least privilege?
-     * Do privileged operations require a human to approve the action? \
-
+     * Do privileged operations require a human to approve the action? <br>
 2. **Insecure Output Handling:** Insecure Output Handling is a vulnerability that arises when a downstream component blindly accepts LLM output without proper scrutiny
    * Attack Scenarios:
      *   An application utilizes an LLM plugin to generate responses for a chatbot feature.
@@ -59,8 +57,7 @@ Here is the list of questions I have collated for helping me with threat modelli
          This allows an attacker to manipulate the LLM output to execute arbitrary commands
    * **Questions:**
      * Is your LLM data directly being entered into a system shell or similar functions?
-     * Is the output being encoded?\
-
+     * Is the output being encoded?<br>
 3. **Training Data Poisoning:** Manipulation of the data to introduce vulnerabilities, backdoors or biases that could compromise the model’s security, effectiveness or ethical behavior.&#x20;
    * Attack Scenarios:
      * The victim model trains using falsified information which is reflected in outputs of generative AI prompts to its consumers.
